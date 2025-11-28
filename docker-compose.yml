@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    ports:
+      - "9090:9090"
+    networks:
+      - s-network
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: studentdb
+      POSTGRES_USER: shayan
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5433:5432"
+    networks:
+      - s-network
+    # volumes:
+    #   - postgres-s-data:/var/lib/postgresql/data
+
+
+networks:
+  s-network:
+    driver: bridge
+
+# volumes:
+#   postgres-s-data:
