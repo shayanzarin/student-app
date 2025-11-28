@@ -25,5 +25,14 @@ public class StudentController {
 
         return studentRepo.findAll();
     }
+
+    @RequestMapping(value = "/addStudent", method = RequestMethod.GET)
+    public String addStudent() {
+        Student student = new Student();
+        student.setName("New Student");
+        student.setAge(18);
+        studentRepo.save(student);
+        return "Student added: " + student.toString();
+    }
     
 }
